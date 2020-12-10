@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/main.css">
+  <link rel="icon" href="https://img.icons8.com/color/48/000000/coronavirus.png"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160824550-2"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://momentjs.com/downloads/moment.js" type="application/javascript"></script>
+  <title>CovidDashboard | Stay at home</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-160824550-2')
+  </script>
+</head>
+<body>
+    <header>
+    <select class="w-200 rounded" id="countrySelect" name="country">
+      <option>Global</option>
+      <% for (var country of countries) { %>
+        <option><%= country.country %></option>
+      <% } %>
+      </select>
+    </header>
+    <main>
+      <img src="https://img.icons8.com/color/48/000000/coronavirus.png"/>
+      <h2>CovidDashboard</h2>
+      <div class="test">
+      <img src="https://img.icons8.com/fluent/48/000000/medical-doctor.png"/>
+        <strong>Active</strong>
+        <%= String(data.active).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayActive !== undefined ? "("+(data.todayActive >= 0 ? "+":"-")+String(Math.abs(data.todayActive)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>
+        <br><br>
+        <img src="https://img.icons8.com/color/48/000000/doctors-bag.png"/>
+        <strong>Cases</strong>
+        <%= String(data.cases).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayCases !== undefined ? "("+(data.todayCases >= 0 ? "+":"-")+String(Math.abs(data.todayCases)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>
+        <br><br>
+        <img src="https://img.icons8.com/color/48/000000/recovery.png"/>
+        <strong>Recovered</strong>
+        <%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayRecovered !== undefined ? "("+(data.todayRecovered >= 0 ? "+":"-")+String(Math.abs(data.todayRecovered)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>
+        <br><br>
+        <img src="https://img.icons8.com/color/48/000000/hospital-room--v1.png"/>
+        <strong>Critical</strong>
+        <%= String(data.critical).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayCritical !== undefined ? "("+(data.todayCritical>= 0 ? "+":"-")+String(Math.abs(data.todayCritical)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %> 
+        <br><br>
+        <img src="https://img.icons8.com/color/48/000000/die-in-bed.png"/>
+        <strong>Deaths</strong>
+        <%= String(data.deaths).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayDeaths !== undefined ? "("+(data.todayDeaths >= 0 ? "+":"-")+String(Math.abs(data.todayDeaths)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %> 
+        <br><br>
+        <img src="https://img.icons8.com/emoji/48/000000/test-tube-emoji.png"/>
+        <strong>Tests</strong>
+        <%= String(data.tests).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayTests !== undefined ? "("+(data.todayTests >= 0 ? "+":"-")+String(Math.abs(data.todayTests)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>
+        <br><br>
+        <img src="https://img.icons8.com/color/48/000000/user-group-woman-woman.png"/>
+        <strong>casesPerOneMillion</strong>
+        <%= String(data.casesPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayCasesPerOneMillion !== undefined ? "("+(data.todayCasesPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayCasesPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %> 
+        <br><br>
+        <img src="https://img.icons8.com/color/48/000000/headstone.png"/>
+        <strong>deathsPerOneMillion</strong>
+        <%= String(data.deathsPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayDeathsPerOneMillion !== undefined ? "("+(data.todayDeathsPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayDeathsPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>
+        <br><br>
+        <img src="https://img.icons8.com/pastel-glyph/64/000000/clock--v1.png"/>
+        <strong>Last Updated</strong>
+        <div id="lastUpdated"></div>
+      </div>
+        <h2>Stats</h2>
+        <canvas id="chart" width="400" height="100"></canvas>
+        <script>
+           var ctx = document.getElementById('chart');
+           var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Active', 'Deaths', 'Critical', 'Recovered'],
+        datasets: [{
+            label: 'Stats',
+            data: [<%= data.active %>, <%= data.deaths %>, <%= data.critical %>, <%=data.recovered %>],
+            backgroundColor: [
+                'rgba(255, 255, 50, 1)',
+                'rgba(253, 88, 33, 1)',
+                'rgba(33, 37, 253, 1)',
+                'rgba(104, 187, 070, 255)',
+            ],
+            borderColor: [
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+});
+      </script>     
+      </main>     
+      <script>
+        let updated = parseInt('<%- data.updated %>')
+        if(updated)
+          $("#lastUpdated").text(moment(updated).fromNow(true))
+        let current = decodeURIComponent(window.location.pathname.replace(/\//g, ''))
+        $("#countrySelect").val(current.charAt(0).toUpperCase()+current.slice(1))
+                     .on('change', (e) => $('#countrySelect option').filter((i, o)=> o.value.toLowerCase() === e.target.value.toLowerCase()).length && window.location.replace('/'+encodeURIComponent($(e.target).val())))
+                     .on('input', (e) => $('#countrySelect option').filter((i, o)=> o.value.toLowerCase() === e.target.value.toLowerCase()).length && window.location.replace('/'+encodeURIComponent($(e.target).val())))
+        $("small").each((i, e) => {
+      if(parseInt(e.textContent.replace(/(\(|\))/g, '')) > 0){
+        $(e).addClass('positive')
+      }else{
+        $(e).addClass('negative')
+      }
+    })  
+      </script>
+      </body>
+</html>

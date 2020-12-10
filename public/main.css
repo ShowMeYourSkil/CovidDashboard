@@ -1,0 +1,39 @@
+html{
+    background-color: #eeeeee;
+}
+
+header{
+    text-align: center;
+}
+
+main {
+    text-align: center;
+}
+
+.test {
+  text-align: center;
+}
+
+select {
+    background: white;
+    border: none;
+    padding-left: 1rem;
+    box-shadow: 0px 0px 5px rgba(73,80,87,.25);
+    font-size: 1.65rem;
+    font-weight: bold;
+  }
+
+  small {
+    font-size: 60% !important;
+    --positive-color: red;
+    --negative-color: green;
+  }
+
+  small.recovered {
+    --positive-color: green;
+    --negative-color: red;
+  }
+  
+  small.positive {
+    color: var(--positive-color);
+  }
