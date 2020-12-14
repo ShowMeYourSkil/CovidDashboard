@@ -37,3 +37,7 @@ select {
   small.positive {
     color: var(--positive-color);
   }
+
+small.negative {
+    color: var(--negative-color);
+  }
