@@ -27,40 +27,40 @@
       </select>
     </header>
     <main>
-      <img src="https://img.icons8.com/color/48/000000/coronavirus.png"/>
+    <img src="https://img.icons8.com/color/48/000000/coronavirus.png"/>
       <h2>CovidDashboard</h2>
-      <div class="test">
+      <div class="dashbaord">
       <img src="https://img.icons8.com/fluent/48/000000/medical-doctor.png"/>
         <strong>Active</strong>
-        <%= String(data.active).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayActive !== undefined ? "("+(data.todayActive >= 0 ? "+":"-")+String(Math.abs(data.todayActive)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>
+        <%= String(data.active).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayActive !== undefined ? "("+(data.todayActive >= 0 ? "+":"-")+String(Math.abs(data.todayActive)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small>
         <br><br>
-        img src="https://img.icons8.com/color/48/000000/doctors-bag.png"/>
+        <img src="https://img.icons8.com/color/48/000000/doctors-bag.png"/>
         <strong>Cases</strong>
-        <%= String(data.cases).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= yesterday.todayCases !== undefined ? "("+(yesterday.todayCases >= 0 ? "+":"-")+String(Math.abs(yesterday.todayCases)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>        
+        <%= String(data.cases).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= yesterday.todayCases !== undefined ? "("+(yesterday.todayCases >= 0 ? "+":"-")+String(Math.abs(yesterday.todayCases)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small>
         <br><br>
         <img src="https://img.icons8.com/color/48/000000/recovery.png"/>
         <strong>Recovered</strong>
-        <%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= yesterday.todayRecovered !== undefined ? "("+(yesterday.todayRecovered >= 0 ? "+":"-")+String(Math.abs(yesterday.todayRecovered)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>
+        <%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small class="recovered"><%= yesterday.todayRecovered !== undefined ? "("+(yesterday.todayRecovered >= 0 ? "+":"-")+String(Math.abs(yesterday.todayRecovered)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small>
         <br><br>
         <img src="https://img.icons8.com/color/48/000000/hospital-room--v1.png"/>
         <strong>Critical</strong>
-        <%= String(data.critical).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayCritical !== undefined ? "("+(data.todayCritical>= 0 ? "+":"-")+String(Math.abs(data.todayCritical)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %> 
+        <%= String(data.critical).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayCritical !== undefined ? "("+(data.todayCritical>= 0 ? "+":"-")+String(Math.abs(data.todayCritical)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %> </small>
         <br><br>
         <img src="https://img.icons8.com/color/48/000000/die-in-bed.png"/>
         <strong>Deaths</strong>
-        <%= String(data.deaths).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= yesterday.todayDeaths !== undefined ? "("+(yesterday.todayDeaths >= 0 ? "+":"-")+String(Math.abs(yesterday.todayDeaths)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %> 
+        <%= String(data.deaths).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= yesterday.todayDeaths !== undefined ? "("+(yesterday.todayDeaths >= 0 ? "+":"-")+String(Math.abs(yesterday.todayDeaths)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small>
         <br><br>
         <img src="https://img.icons8.com/emoji/48/000000/test-tube-emoji.png"/>
         <strong>Tests</strong>
-        <%= String(data.tests).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayTests !== undefined ? "("+(data.todayTests >= 0 ? "+":"-")+String(Math.abs(data.todayTests)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>
+        <%= String(data.tests).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small class="recovered"><%= data.todayTests !== undefined ? "("+(data.todayTests >= 0 ? "+":"-")+String(Math.abs(data.todayTests)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small>
         <br><br>
         <img src="https://img.icons8.com/color/48/000000/user-group-woman-woman.png"/>
         <strong>casesPerOneMillion</strong>
-        <%= String(data.casesPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayCasesPerOneMillion !== undefined ? "("+(data.todayCasesPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayCasesPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %> 
+        <%= String(data.casesPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayCasesPerOneMillion !== undefined ? "("+(data.todayCasesPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayCasesPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small>
         <br><br>
         <img src="https://img.icons8.com/color/48/000000/headstone.png"/>
         <strong>deathsPerOneMillion</strong>
-        <%= String(data.deathsPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><%= data.todayDeathsPerOneMillion !== undefined ? "("+(data.todayDeathsPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayDeathsPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %>
+        <%= String(data.deathsPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayDeathsPerOneMillion !== undefined ? "("+(data.todayDeathsPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayDeathsPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small>
         <br><br>
         <img src="https://img.icons8.com/pastel-glyph/64/000000/clock--v1.png"/>
         <strong>Last Updated</strong>
@@ -71,7 +71,7 @@
         <script>
            var ctx = document.getElementById('chart');
            var myChart = new Chart(ctx, {
-    type: 'doughnut',
+    type: 'pie',
     data: {
         labels: ['Active', 'Deaths', 'Critical', 'Recovered'],
         datasets: [{
