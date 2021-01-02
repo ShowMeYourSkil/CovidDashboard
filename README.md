@@ -1,6 +1,7 @@
 <img src="https://img.icons8.com/color/48/000000/coronavirus--v1.png"/> 
 <h1>Covid Dashboard</h1>
 <strong>Simple Dashboard about the Covid-19 pandemic. </strong>
+https://covid.progen-bot.de 
 <br><br>
 <h1> Intro </h1>
 This Corona dashboard is a user-friendly dashboard for viewing current Covid-19 statistics from around the world or from individual countries.
