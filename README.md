@@ -15,8 +15,5 @@ I've been working on it for fun over the last few weeks and I want to keep expan
 <h3>Search for data from all countries in the world.</h3>
 <img src="search.png" alt="not found">
 <h1>Overview</h1>
-<h3>Graphic view</h3>
+<h3>Graphic view. Active Cases, Critical, Recovered, Deaths</h3>
 <img src="stats.png" alt="not found">
-<h1>Cases</h1>
-<h3>Comparison of new infections yesterday and today.</h3>
-<img src="new cases.png" alt="not found">
