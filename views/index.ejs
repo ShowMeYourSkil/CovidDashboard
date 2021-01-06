@@ -94,29 +94,6 @@
     },
 });
       </script>     
-       <canvas id="dailycases-chart"></canvas>
-        <script>
-           var ctx = document.getElementById('dailycases-chart');
-           var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Yesterday', 'Today'],
-        datasets: [{
-            label: 'New Cases',
-            data: [<%= data.todayCases %>, <%= yesterday.todayCases %>],
-            backgroundColor: [
-                'rgba(255, 255, 50, 1)',
-                'rgba(253, 255, 50, 1)',
-            ],
-            borderColor: [
-                'rgba(0, 0, 0, 1)',
-                'rgba(0, 0, 0, 1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-});
-        </script>
       </main>     
       <script>
         let updated = parseInt('<%- data.updated %>')
