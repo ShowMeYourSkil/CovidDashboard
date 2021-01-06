@@ -10,7 +10,16 @@ main {
     text-align: center;
 }
 
-.test {
+.footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+  width: 100%;
+  background-color: #F5F5F5;
+}
+
+.dashboard {
   text-align: center;
 }
 
