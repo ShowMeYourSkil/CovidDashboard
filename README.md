@@ -6,8 +6,6 @@ https://covid.progen-bot.de
 <h1> Intro </h1>
 This Corona dashboard is a user-friendly dashboard for viewing current Covid-19 statistics from around the world or from individual countries.
 <br><br>
-I've been working on it for fun over the last few weeks and I want to keep expanding it and implement as much as I can that comes to mind.
-<br><br>
 <h1>Data</h1>
 <h3>View all important Corona data clearly.</h3>
 <img src="preview.png" alt="not found">
